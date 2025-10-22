@@ -101,15 +101,16 @@ def analyze_history(sim: GachaSimulator):
         elif char.get_type == "gacha":
             gacha_count += 1
 
+    banner_num = up_count + claim_count
     # 平均每UP花费抽卡数
-    avg_pulls_per_up = total_pulls / up_count if up_count > 0 else 0
+    avg_pulls_per_up = total_pulls / banner_num
 
     # 输出统计
     print("\n" + "=" * 60)
     print("📊 抽卡模拟统计结果")
     print("=" * 60)
     print(
-        f"模拟卡池数量: {claim_count + len(set(r.banner_num for r in sim.history if r.character.is_up and r.character.get_type != 'claim'))}")
+        f"模拟卡池数量: {banner_num}")
     print(f"通过抽卡获得的UP角色总数: {up_count}")
     print(f"通过120抽免费领取的UP角色数: {claim_count}")
     print(f"通过160抽保底强制获得的UP数: {guaranteed_count}")
